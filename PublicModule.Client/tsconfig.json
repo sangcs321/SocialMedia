@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+      "baseUrl": "src",
+      "target": "ESNext",
+      "useDefineForClassFields": true,
+      "allowJs": false,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+      "strict": true,
+      "forceConsistentCasingInFileNames": true,
+      "module": "esnext",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "noEmit": true,
+      "jsx": "react-jsx",
+      "lib": ["DOM", "DOM.Iterable", "ESNext"],
+      "skipLibCheck": true,
+      "noFallthroughCasesInSwitch": true,
+      "noImplicitAny": false,
+      "paths": {
+        "@locales": ["./src/locales"],
+        "@constants": ["./src/constants"]
+      },
+      "strictNullChecks": true
+    },
+    "include": ["**/*.ts", "**/*.tsx", "src", "src/utils/declaration.d.ts"],
+    "exclude": ["node_modules"]
+  }
+  
