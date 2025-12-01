@@ -1,19 +1,12 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import mkcert from "vite-plugin-mkcert";
+import tsConfigPaths from "vite-tsconfig-paths";
 import { fileURLToPath, URL } from "node:url";
-import tsconfigPaths from 'vite-tsconfig-paths'
+
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(),tsconfigPaths()],
-  resolve: {
-    alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
-      lodash: "lodash-es",
-    },
-  },
-  optimizeDeps: {
-    include: ["lodash-es"],
-  },
+  plugins: [react(), mkcert(), tsConfigPaths()],
   server: {
     proxy: {
       "^/(api|login|users/me|refresh)": {
@@ -24,5 +17,14 @@ export default defineConfig({
     },
     port: 5173,
     https: {},
+  },
+  resolve: {
+    alias: {
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+      lodash: "lodash-es",
+    },
+  },
+  optimizeDeps: {
+    include: ["lodash-es"],
   },
 })
