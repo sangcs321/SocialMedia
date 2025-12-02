@@ -1,10 +1,14 @@
 import { lazy } from "react";
 
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 
 const LoginPage = lazy(() => import("pages/LoginPage/LoginPage"));
-
+const RegisterPage = lazy(() => import("pages/RegisterPage/RegisterPage"));
 export const AuthRoute = createBrowserRouter([
+  {
+    path: "/",
+    element: <Navigate to="/login" replace />,
+  },
   {
     path: "/login",
     // loader: () => {
@@ -16,5 +20,9 @@ export const AuthRoute = createBrowserRouter([
     //   };
     // },
     element: <LoginPage />,
+  },
+  {
+    path: "/register",
+    element: <RegisterPage />,
   },
 ]);
