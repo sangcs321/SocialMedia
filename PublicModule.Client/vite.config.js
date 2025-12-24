@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [react(), mkcert(), tsConfigPaths()],
   server: {
     proxy: {
-      "^/(api|login|users/me|refresh)": {
+      "^/(api|users/me|refresh)": {
         target: "https://localhost:5229", // ASP.NET Core HTTPS port
         secure: false, // dev self-signed
         changeOrigin: true,

@@ -1,6 +1,8 @@
-import { lazy } from "react";
+import { lazy, Suspense } from "react";
 
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter, Navigate, Outlet } from "react-router-dom";
+import AppRoute from "./AppRoute";
+import { GuestLayout } from "layouts";
 
 const HomePage = lazy(() => import("pages/HomePage/HomePage"));
 const LoginPage = lazy(() => import("pages/LoginPage/LoginPage"));
@@ -9,7 +11,11 @@ const RegisterPage = lazy(() => import("pages/RegisterPage/RegisterPage"));
 const AuthRoute = createBrowserRouter([
   {
     path: "/",
-    element: <Navigate to="/login" />,
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <HomePage />
+      </Suspense>
+    ),
   },
   {
     path: "/login",
@@ -21,7 +27,7 @@ const AuthRoute = createBrowserRouter([
   },
   {
     path: "*",
-    element: <div>Trang không tồn tại (404)</div>,
+    element: <div>404</div>,
   },
 ]);
 
