@@ -1,9 +1,13 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 
-interface AuthLayoutProps {
-  children: React.ReactNode;
-}
-
-export const AuthLayout = ({ children }: AuthLayoutProps) => {
-  return <div>{children}</div>;
+export const AuthLayout = () => {
+  return (
+    <>
+      <main>
+        <div className="container">hehe</div>
+        <Outlet />
+      </main>
+    </>
+  );
 };
