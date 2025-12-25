@@ -13,7 +13,9 @@ const AuthRoute = createBrowserRouter([
     path: "/",
     element: (
       <Suspense fallback={<div>Loading...</div>}>
-        <HomePage />
+        <GuestLayout>
+          <HomePage />
+        </GuestLayout>
       </Suspense>
     ),
   },
