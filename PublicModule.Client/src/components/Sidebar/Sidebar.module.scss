@@ -1,0 +1,27 @@
+.sidebarWrapper {
+  width: 350px;
+  height: calc(
+    100dvh - 56px - 16px
+  ); // 16px is the padding of the sidebar(top and bottom), 56px is the height of the header
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px 8px;
+}
+
+.sidebarRow {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--hover-color);
+  }
+}
+
+.sidebarRowIcon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px;
+}

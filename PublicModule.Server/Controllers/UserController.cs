@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using PublicModule.Server.Models.User;
 
-namespace PublicModule.Server.Controller
+namespace PublicModule.Server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class UserController: ControllerBase
+    public class UserController : ControllerBase
     {
         private static List<User> users = new List<User>
         {
@@ -19,5 +19,6 @@ namespace PublicModule.Server.Controller
         {
             return Ok(users);
         }
+
     }
 }

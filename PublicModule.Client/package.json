@@ -14,10 +14,13 @@
     "@ant-design/icons": "6.x",
     "antd": "^6.0.0",
     "classnames": "^2.5.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.25.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.9.6",
     "sass": "^1.94.2",
+    "tailwind-merge": "^3.4.0",
     "vite-plugin-mkcert": "^1.17.9"
   },
   "devDependencies": {

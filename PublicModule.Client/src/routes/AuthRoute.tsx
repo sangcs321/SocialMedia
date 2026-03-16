@@ -1,12 +1,12 @@
 import { lazy, Suspense } from "react";
 
-import { createBrowserRouter, Navigate, Outlet } from "react-router-dom";
-import AppRoute from "./AppRoute";
+import { createBrowserRouter } from "react-router-dom";
 import { GuestLayout } from "layouts";
 
 const HomePage = lazy(() => import("pages/HomePage/HomePage"));
 const LoginPage = lazy(() => import("pages/LoginPage/LoginPage"));
 const RegisterPage = lazy(() => import("pages/RegisterPage/RegisterPage"));
+const LandingPage = lazy(() => import("pages/LandingPage/LandingPage"));
 
 const AuthRoute = createBrowserRouter([
   {
@@ -26,6 +26,10 @@ const AuthRoute = createBrowserRouter([
   {
     path: "/register",
     element: <RegisterPage />,
+  },
+  {
+    path: "/landing",
+    element: <LandingPage />,
   },
   {
     path: "*",

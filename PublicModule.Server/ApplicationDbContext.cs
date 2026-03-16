@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PublicModule.Server.Models.Me;
+using PublicModule.Server.Models.User;
 
 namespace PublicModule.Server
 {
@@ -11,5 +12,6 @@ namespace PublicModule.Server
         }
 
         public DbSet<Me> Me { get; set; }
+        public DbSet<User> User { get; set; }
     }
 }

@@ -1,0 +1,16 @@
+.gameContainer {
+  padding: 10px;
+}
+.borderGame {
+  border: 10px solid gold;
+}
+
+.gameBoard {
+  display: grid;
+  grid-template-columns: repeat(20, 20px);
+  grid-template-rows: repeat(20, 20px);
+}
+
+.snake {
+  background-color: red;
+}
