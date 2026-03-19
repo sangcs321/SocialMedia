@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace PublicModule.Server.DTOs;
+namespace PublicModule.Server.DTOs.RequestDto;
 
-public class LoginDto
+public class LoginRequestDto
 {
     [Required(ErrorMessage = "Email là bắt buộc")]
     [EmailAddress]

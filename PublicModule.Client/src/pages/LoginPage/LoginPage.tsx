@@ -4,7 +4,8 @@ import { Button, Form, Input } from "antd";
 import { useLoginPage } from "./LoginPageHooks";
 
 const LoginPage = () => {
-  const { form } = useLoginPage();
+  const { form, handleLogin } = useLoginPage();
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapperLogin}>
@@ -18,15 +19,15 @@ const LoginPage = () => {
               />
             </div>
             <h2 className="title">
-              FacebookFacebook giúp bạn kết nối và chia sẻ với mọi người trong
-              cuộc sống của bạn.
+              Facebook giúp bạn kết nối và chia sẻ với mọi người trong cuộc sống
+              của bạn.
             </h2>
           </div>
           <div className={styles.loginForm}>
             <Form
               form={form}
               name="loginForm"
-              onFinish={() => {}}
+              onFinish={handleLogin}
               layout="vertical"
             >
               <Form.Item

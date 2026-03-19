@@ -1,6 +1,7 @@
 import "./HomePage.module.scss";
 import styles from "./HomePage.module.scss";
 import { Sidebar, Snake } from "components";
+import { useHomePage } from "./HomePageHooks";
 
 const HomePage = () => {
   return (

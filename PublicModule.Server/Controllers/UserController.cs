@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
 using PublicModule.Server.Models.User;
+using Microsoft.AspNetCore.Authorization;
 
 namespace PublicModule.Server.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class UserController : ControllerBase
@@ -18,6 +20,11 @@ namespace PublicModule.Server.Controllers
         public ActionResult<User> Get()
         {
             return Ok(users);
+        }
+        [HttpGet("me")]
+        public ActionResult<User> GetMe()
+        {
+            return Ok(users[0]);
         }
 
     }
