@@ -1,26 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Header } from "components";
 import { Outlet } from "react-router-dom";
-import { UserApiService } from "api";
+import { useAppDispatch } from "store/hooks";
+import { userAcions } from "store/userStore";
 
 export const GuestLayout = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
-
-  const [users, setUsers] = useState<any[]>([]);
-
-  const fetchUsers = async () => {
-    try {
-      const usersRes = await UserApiService.getUsers();
-      if (usersRes.success) {
-        setUsers(usersRes.value);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    fetchUsers();
+    dispatch(userAcions.fetchMe());
   }, []);
 
   return (

@@ -6,4 +6,9 @@ export const UserApiService = {
       url: "/api/user",
       method: "GET",
     }),
+  getMe: () =>
+    apiRequest<any>({
+      url: "/api/user/me",
+      method: "GET",
+    }),
 };

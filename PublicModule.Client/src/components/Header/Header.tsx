@@ -17,7 +17,7 @@ import {
 import { useHeader } from "./HeaderHooks";
 
 export const Header = () => {
-  const { activeKey, handleChangeActiveKey } = useHeader();
+  const { activeKey, handleChangeActiveKey, user } = useHeader();
 
   const items = useMemo(
     () => [

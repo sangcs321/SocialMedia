@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using PublicModule.Server.Models.User;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace PublicModule.Server.Controllers
 {
@@ -22,9 +23,31 @@ namespace PublicModule.Server.Controllers
             return Ok(users);
         }
         [HttpGet("me")]
-        public ActionResult<User> GetMe()
+        public IActionResult GetMe()
         {
-            return Ok(users[0]);
+            // Trích xuất tự động qua Request có giữ Cookie
+            var id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var email = User.FindFirstValue(ClaimTypes.Email);
+            var name = User.FindFirstValue(ClaimTypes.Name);
+            var role = User.FindFirstValue(ClaimTypes.Role);
+
+            if (string.IsNullOrEmpty(id))
+            {
+                return Unauthorized(new { Message = "Lỗi xác thực, token không hợp lệ hoặc đã hết hạn." });
+            }
+
+            // Trả về JSON chứa thông tin người dùng đang đăng nhập
+            // Trình duyệt sẽ đọc thông tin này để nuôi Context / Redux
+            return Ok(new
+            {
+                Data = new
+                {
+                    Id = id,
+                    Email = email,
+                    Name = name,
+                    Role = role
+                }
+            });
         }
 
     }
