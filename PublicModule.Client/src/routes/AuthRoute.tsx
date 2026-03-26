@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 
 import { createBrowserRouter } from "react-router-dom";
-import { GuestLayout } from "layouts";
+import { AuthLayout, GuestLayout } from "layouts";
 import AppRoute from "./AppRoute";
 
 const LoginPage = lazy(() => import("pages/LoginPage/LoginPage"));
@@ -25,6 +25,16 @@ const AuthRoute = createBrowserRouter([
   {
     path: "/landing",
     element: <LandingPage />,
+  },
+  {
+    path: "/test",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "/test/hehe",
+        element: <LoginPage />,
+      },
+    ],
   },
   {
     path: "*",

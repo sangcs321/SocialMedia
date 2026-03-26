@@ -2,10 +2,11 @@ import { useMemo } from "react";
 import styles from "./Header.module.scss";
 import classNames from "classnames";
 import { FacebookLogo } from "assets/facebookLogo";
-import { Avatar, Button, Input, Tabs, Tooltip } from "antd";
+import { Avatar, Button, Card, Dropdown, Input, Tabs, Tooltip } from "antd";
 import {
   BellOutlined,
   HomeOutlined,
+  LogoutOutlined,
   MenuOutlined,
   MessageOutlined,
   PlaySquareOutlined,
@@ -144,6 +145,7 @@ export const Header = () => {
             onChange={(key) => {
               handleChangeActiveKey(key);
             }}
+            className={styles.tabsHeader}
           />
         </div>
         <div className={classNames(styles.item, styles.right)}>
@@ -165,10 +167,19 @@ export const Header = () => {
             className={styles.buttonHeader}
             size="large"
           />
-          <Avatar
-            src="https://scontent.fsgn2-11.fna.fbcdn.net/v/t39.30808-6/604833917_122233025402164346_3231059050864155223_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=1W4DhgSs3KgQ7kNvwGihvD2&_nc_oc=AdlPgnZHRx9LGsJS-OpQHIBv8MTaf-TL82-TfP99QJLb43SQmfr9hSZwQZv-tT7Vg9E&_nc_zt=23&_nc_ht=scontent.fsgn2-11.fna&_nc_gid=9aSIc3kkE5h0tOaILiBTXg&oh=00_AfkpDuzl7v-f1x8Q-YI8g2xvIaMdRlEwLD6HorpgftsclQ&oe=69529902"
-            size={40}
-          />
+          <Dropdown
+            trigger={["click"]}
+            popupRender={() => (
+              <div className={styles.dropdownHeader}>
+                <Card className={styles.dropdownHeaderCard}>hehe</Card>
+              </div>
+            )}
+          >
+            <Avatar
+              src="https://scontent.fsgn2-11.fna.fbcdn.net/v/t39.30808-6/604833917_122233025402164346_3231059050864155223_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=1W4DhgSs3KgQ7kNvwGihvD2&_nc_oc=AdlPgnZHRx9LGsJS-OpQHIBv8MTaf-TL82-TfP99QJLb43SQmfr9hSZwQZv-tT7Vg9E&_nc_zt=23&_nc_ht=scontent.fsgn2-11.fna&_nc_gid=9aSIc3kkE5h0tOaILiBTXg&oh=00_AfkpDuzl7v-f1x8Q-YI8g2xvIaMdRlEwLD6HorpgftsclQ&oe=69529902"
+              size={40}
+            />
+          </Dropdown>
         </div>
       </div>
     </div>

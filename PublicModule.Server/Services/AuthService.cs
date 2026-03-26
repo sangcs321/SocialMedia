@@ -134,6 +134,25 @@ public class AuthService : IAuthService
         };
     }
 
+    public async Task<ApiResponse<string>> LogoutAsync(string email)
+    {
+        var user = await _context.User.FirstOrDefaultAsync(u => u.Email == email);
+        if (user == null) return new ApiResponse<string>
+        {
+            IsError = true,
+            Message = "There has been an error"
+        };
+        user.RefreshToken = null;
+        user.RefreshTokenExpiryTime = null;
+
+        await _context.SaveChangesAsync();
+        return new ApiResponse<string>
+        {
+            IsError = false,
+            Message = "Logout successful"
+        };
+
+    }
     private string GenerateRefreshToken()
     {
         var bytes = new byte[64];

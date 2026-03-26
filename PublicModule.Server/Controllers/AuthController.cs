@@ -1,3 +1,5 @@
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PublicModule.Server.DTOs;
 using PublicModule.Server.DTOs.RequestDto;
@@ -25,8 +27,8 @@ namespace PublicModule.Server.Controllers
         public async Task<IActionResult> Login(LoginRequestDto loginRequestDto)
         {
             var result = await _authService.LoginAsync(loginRequestDto);
-            
-            if (result.IsError || result.Data == null) 
+
+            if (result.IsError || result.Data == null)
                 return BadRequest(result.Message);
 
             // Tạo hộp chứa Cookie bảo mật
@@ -34,7 +36,7 @@ namespace PublicModule.Server.Controllers
             {
                 HttpOnly = true,
                 Secure = true, // Cần HTTPS
-                SameSite = SameSiteMode.None, 
+                SameSite = SameSiteMode.None,
                 Expires = DateTime.UtcNow.AddDays(7)
             };
 
@@ -56,7 +58,7 @@ namespace PublicModule.Server.Controllers
             var refreshTokenDto = new RefreshTokenDto { RefreshToken = refreshToken };
             var result = await _authService.RefreshTokenAsync(refreshTokenDto);
 
-            if (result.IsError || result.Data == null) 
+            if (result.IsError || result.Data == null)
                 return BadRequest(result.Message);
 
             // Cập nhật lại cấu hình Cookie mới mới
@@ -64,7 +66,7 @@ namespace PublicModule.Server.Controllers
             {
                 HttpOnly = true,
                 Secure = true,
-                SameSite = SameSiteMode.None, 
+                SameSite = SameSiteMode.None,
                 Expires = DateTime.UtcNow.AddDays(7)
             };
 
@@ -73,13 +75,13 @@ namespace PublicModule.Server.Controllers
 
             return Ok(new { Message = "Làm mới Token thành công!" });
         }
-
+        [Authorize]
         [HttpPost("logout")]
-        public IActionResult Logout()
+        public async Task<IActionResult> Logout()
         {
-            Response.Cookies.Delete("accessToken");
-            Response.Cookies.Delete("refreshToken");
-            return Ok(new { Message = "Đã đăng xuất" });
+            var email = User.FindFirst(ClaimTypes.Email)?.Value;
+            var result = await _authService.LogoutAsync(email);
+            return result.IsError ? BadRequest(result.Message) : Ok(result.Message);
         }
 
     }
