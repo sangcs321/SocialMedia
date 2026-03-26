@@ -1,9 +1,10 @@
 import React from "react";
 import styles from "./RegisterPage.module.scss";
 import { Form, Input, Button } from "antd";
+import { useRegisterPage } from "./RegisterPageHooks";
 
 const RegisterPage = () => {
-  const [form] = Form.useForm();
+  const { form, registerUser } = useRegisterPage();
 
   return (
     <div className={styles.container}>
@@ -21,7 +22,7 @@ const RegisterPage = () => {
           <Form
             form={form}
             name="registerForm"
-            onFinish={() => {}}
+            onFinish={registerUser}
             layout="vertical"
           >
             <Form.Item

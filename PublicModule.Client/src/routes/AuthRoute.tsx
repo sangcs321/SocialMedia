@@ -1,23 +1,18 @@
 import { lazy, Suspense } from "react";
 
-import { createBrowserRouter, Navigate, Outlet } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
+import { AuthLayout, GuestLayout } from "layouts";
 import AppRoute from "./AppRoute";
-import { GuestLayout } from "layouts";
 
-const HomePage = lazy(() => import("pages/HomePage/HomePage"));
 const LoginPage = lazy(() => import("pages/LoginPage/LoginPage"));
 const RegisterPage = lazy(() => import("pages/RegisterPage/RegisterPage"));
+const LandingPage = lazy(() => import("pages/LandingPage/LandingPage"));
 
 const AuthRoute = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <Suspense fallback={<div>Loading...</div>}>
-        <GuestLayout>
-          <HomePage />
-        </GuestLayout>
-      </Suspense>
-    ),
+    element: <GuestLayout />,
+    children: [...AppRoute],
   },
   {
     path: "/login",
@@ -26,6 +21,20 @@ const AuthRoute = createBrowserRouter([
   {
     path: "/register",
     element: <RegisterPage />,
+  },
+  {
+    path: "/landing",
+    element: <LandingPage />,
+  },
+  {
+    path: "/test",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "/test/hehe",
+        element: <LoginPage />,
+      },
+    ],
   },
   {
     path: "*",

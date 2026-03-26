@@ -1,15 +1,20 @@
-import React from "react";
+import { useEffect } from "react";
 import { Header } from "components";
+import { Outlet } from "react-router-dom";
+import { useAppDispatch } from "store/hooks";
+import { userAcions } from "store/userStore";
 
-interface GuestLayoutProps {
-  children: React.ReactNode;
-}
+export const GuestLayout = () => {
+  const dispatch = useAppDispatch();
 
-export const GuestLayout = ({ children }: GuestLayoutProps) => {
+  useEffect(() => {
+    dispatch(userAcions.fetchMe());
+  }, []);
+
   return (
     <div>
       <Header />
-      {children}
+      <Outlet />
     </div>
   );
 };
